@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MinorShield · SofTarget</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --primary: #2563eb;
+      --accent: #7c3aed;
+      --text-dark: #0f172a;
+      --text-muted: #475569;
+      --bg-glass: rgba(255, 255, 255, 0.70);
+      --border-glass: rgba(255, 255, 255, 0.50);
+      --shadow-lg: 0 25px 60px rgba(15, 23, 42, 0.10);
+      --radius-lg: 2.5rem;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
+      background: url('fond.jpg') center/cover fixed no-repeat,
+                  linear-gradient(140deg, #eef2ff, #e2e8f0 40%, #dbeafe 80%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      line-height: 1.6;
+      color: var(--text-dark);
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(1px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .container {
+      position: relative;
+      z-index: 10;
+      max-width: 1120px;
+      width: 100%;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      padding: 2.8rem 2.5rem;
+    }
+
+    /* ===== REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.05s; }
+    .d2 { transition-delay: 0.12s; }
+    .d3 { transition-delay: 0.20s; }
+    .d4 { transition-delay: 0.28s; }
+    .d5 { transition-delay: 0.36s; }
+
+    /* ===== HEADER (type Lucide) ===== */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 0 1.5rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      margin-bottom: 2rem;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(145deg, #1e293b, #0f172a);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+    }
+
+    .logo-text {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .logo-text span {
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header-version {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.50);
+      backdrop-filter: blur(4px);
+      padding: 0.15rem 0.8rem;
+      border-radius: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.60);
+    }
+
+    /* ===== HERO (grand titre) ===== */
+    .hero {
+      text-align: center;
+      padding: 1.5rem 0 2.5rem 0;
+    }
+    .hero h1 {
+      font-size: 3.6rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 0.8rem;
+    }
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto 1.8rem;
+    }
+
+    .hero .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--text-dark);
+      color: #fff;
+      padding: 0.7rem 2rem;
+      border-radius: 60px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.15);
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      transform: scale(1.04);
+      background: #1e293b;
+      box-shadow: 0 8px 28px rgba(15, 23, 42, 0.25);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.60);
+      backdrop-filter: blur(4px);
+      color: var(--text-dark);
+      padding: 0.7rem 2rem;
+      border-radius: 60px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 1px solid rgba(255, 255, 255, 0.80);
+      transition: all 0.3s ease;
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.90);
+      transform: scale(1.04);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.04);
+    }
+
+    /* ===== RESTE DU CONTENU ===== */
+    section { margin-bottom: 3.2rem; }
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    h2 i {
+      color: var(--primary);
+      font-size: 1.2rem;
+      background: rgba(37, 99, 235, 0.08);
+      padding: 0.3rem;
+      border-radius: 10px;
+      width: 2rem;
+      text-align: center;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.6rem;
+      max-width: 680px;
+    }
+
+    /* ===== TÉLÉCHARGEMENT ===== */
+    .download-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      justify-content: center;
+    }
+
+    .download-card {
+      flex: 1 1 220px;
+      max-width: 280px;
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(8px);
+      border-radius: 24px;
+      padding: 1.8rem 1.4rem 1.6rem;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.80);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  box-shadow 0.35s ease,
+                  background 0.3s ease;
+    }
+    .download-card:hover {
+      transform: translateY(-8px);
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 16px 40px rgba(37, 99, 235, 0.08);
+      border-color: rgba(37, 99, 235, 0.15);
+    }
+
+    .download-card .icon {
+      font-size: 2.6rem;
+      color: var(--primary);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .download-card.child .icon { color: #059669; }
+
+    .download-card .tag {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 0.15rem 1rem;
+      border-radius: 40px;
+      background: var(--text-dark);
+      color: #fff;
+      margin-bottom: 0.3rem;
+    }
+    .download-card.child .tag { background: #059669; }
+
+    .download-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 0.1rem 0 0.1rem;
+    }
+    .download-card .version {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--text-dark);
+      color: #fff;
+      padding: 0.6rem 1.8rem;
+      border-radius: 60px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
+      border: none;
+      cursor: pointer;
+    }
+    .btn-download:hover {
+      transform: scale(1.04);
+      background: #1e293b;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.25);
+    }
+
+    /* ===== ÉTAPES ===== */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    @media (max-width: 780px) { .steps-grid { grid-template-columns: 1fr; } }
+
+    .step-block {
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(8px);
+      border-radius: 24px;
+      padding: 1.4rem 1.4rem 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.70);
+      transition: transform 0.3s ease;
+    }
+    .step-block:hover { transform: translateY(-3px); }
+
+    .step-block h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.8rem;
+    }
+    .step-block h3 i { color: var(--primary); font-size: 1.1rem; }
+    .step-block.child h3 i { color: #059669; }
+
+    .step-block .badge-step {
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.55rem;
+      font-weight: 700;
+      padding: 0.1rem 0.9rem;
+      border-radius: 40px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-left: auto;
+    }
+    .step-block.child .badge-step { background: #059669; }
+
+    .step-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      padding: 0.4rem 0.5rem;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.50);
+      backdrop-filter: blur(4px);
+      transition: background 0.2s;
+    }
+    .step-item:hover { background: rgba(255, 255, 255, 0.85); }
+
+    .step-num {
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--primary);
+      min-width: 1.4rem;
+    }
+    .step-item .content strong { display: block; font-size: 0.9rem; }
+    .step-item .content span { font-size: 0.82rem; color: var(--text-muted); }
+
+    .note-box {
+      margin-top: 1.2rem;
+      background: rgba(255, 255, 255, 0.50);
+      backdrop-filter: blur(8px);
+      border-radius: 16px;
+      padding: 0.8rem 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.70);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .note-box i { color: var(--primary); margin-right: 0.4rem; }
+
+    /* ===== FONCTIONNALITÉS ===== */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 1.4rem 1.4rem;
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .feature-card:hover {
+      transform: translateY(-6px);
+      background: rgba(255, 255, 255, 0.80);
+      box-shadow: 0 12px 32px rgba(37, 99, 235, 0.06);
+      border-color: rgba(37, 99, 235, 0.12);
+    }
+    .feature-card .feat-icon {
+      font-size: 1.4rem;
+      color: var(--primary);
+      display: inline-block;
+      width: 2.4rem;
+      text-align: center;
+      background: rgba(37, 99, 235, 0.06);
+      border-radius: 10px;
+      padding: 0.2rem 0;
+      margin-bottom: 0.3rem;
+    }
+    .feature-card h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.1rem;
+    }
+    .feature-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* ===== FAQ ===== */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .faq-item {
+      background: rgba(255, 255, 255, 0.40);
+      backdrop-filter: blur(8px);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.70);
+      overflow: hidden;
+      transition: background 0.2s;
+    }
+    .faq-item:hover { background: rgba(255, 255, 255, 0.60); }
+
+    .faq-q {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      padding: 0.9rem 1.2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-family: inherit;
+      color: var(--text-dark);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      cursor: pointer;
+    }
+    .faq-q i {
+      color: var(--primary);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      flex-shrink: 0;
+    }
+    .faq-item.open .faq-q i { transform: rotate(180deg); }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .faq-a p {
+      padding: 0 1.2rem 1rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      margin-top: 2.8rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.04);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+    footer strong { color: var(--text-dark); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 640px) {
+      .container { padding: 1.5rem 1rem; border-radius: 1.6rem; }
+      .hero h1 { font-size: 2.4rem; }
+      .header { flex-wrap: wrap; gap: 0.6rem; }
+      .download-grid { flex-direction: column; align-items: center; }
+      .download-card { max-width: 100%; width: 100%; }
+      .features-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .step-block { padding: 1rem; }
+      .hero .cta-group { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ===== HEADER (comme Lucide) ===== -->
+  <header class="header reveal visible">
+    <div class="header-left">
+      <div class="logo-icon"><i class="fas fa-shield-halved"></i></div>
+      <div class="logo-text">Minor<span>Shield</span></div>
+    </div>
+    <div class="header-version">v1.0.0</div>
+  </header>
+
+  <!-- ===== HERO (grand titre + sous-titre + CTA) ===== -->
+  <section class="hero reveal d1">
+    <h1>Protection numérique pour <br /><span>toute la famille</span></h1>
+    <p>Analyse en temps réel et blocage des contenus inappropriés — en toute discrétion.</p>
+    <div class="cta-group">
+      <a href="#download" class="btn-primary"><i class="fas fa-arrow-down"></i> Télécharger</a>
+      <a href="#features" class="btn-secondary"><i class="fas fa-star"></i> Voir les fonctionnalités</a>
+    </div>
+  </section>
+
+  <!-- ===== TÉLÉCHARGEMENT ===== -->
+  <section id="download" class="reveal d2">
+    <h2><i class="fas fa-download"></i> Télécharger les applications</h2>
+    <p class="section-desc">Installez l'application Parent sur votre téléphone, et l'application Enfant sur celui de votre enfant.</p>
+
+    <div class="download-grid">
+      <div class="download-card">
+        <span class="icon"><i class="fas fa-user-shield"></i></span>
+        <span class="tag">Parent</span>
+        <h3>MinorShield Parent</h3>
+        <div class="version">v1.0.0 · 12 Mo</div>
+        <a href="minorshield-parent.apk" class="btn-download"><i class="fas fa-arrow-down"></i> Télécharger</a>
+      </div>
+      <div class="download-card child">
+        <span class="icon"><i class="fas fa-child-reaching"></i></span>
+        <span class="tag">Enfant</span>
+        <h3>MinorShield Enfant</h3>
+        <div class="version">v1.0.0 · 8 Mo</div>
+        <a href="minorshield-enfant.apk" class="btn-download"><i class="fas fa-arrow-down"></i> Télécharger</a>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:1.2rem;">
+      <span style="background:rgba(255,255,255,0.40); backdrop-filter:blur(4px); padding:0.3rem 1.2rem; border-radius:60px; font-size:0.8rem; color:var(--text-muted);">
+        <i class="fas fa-shield-halved" style="color:var(--primary);"></i> Fichiers signés · Sécurisés
+      </span>
+    </div>
+  </section>
+
+  <!-- ===== ÉTAPES ===== -->
+  <section id="install" class="reveal d3">
+    <h2><i class="fas fa-list-check"></i> Installation</h2>
+    <p class="section-desc">Suivez ces étapes simples pour configurer la protection sur les deux appareils.</p>
+
+    <div class="steps-grid">
+
+      <div class="step-block">
+        <h3><i class="fas fa-user-shield"></i> Parent <span class="badge-step">votre téléphone</span></h3>
+        <div class="step-list">
+          <div class="step-item"><span class="step-num">1.</span><div class="content"><strong>Sources inconnues</strong><span>Paramètres → Sécurité → Sources inconnues</span></div></div>
+          <div class="step-item"><span class="step-num">2.</span><div class="content"><strong>Télécharger</strong><span>Fichier <code style="background:#e2e8f0;padding:0 0.4rem;border-radius:4px;font-size:0.75rem;">minorshield-parent.apk</code></span></div></div>
+          <div class="step-item"><span class="step-num">3.</span><div class="content"><strong>Installer</strong><span>Ouvrir le fichier → Installer</span></div></div>
+          <div class="step-item"><span class="step-num">4.</span><div class="content"><strong>Créer un compte</strong><span>Nom, email, mot de passe</span></div></div>
+          <div class="step-item"><span class="step-num">5.</span><div class="content"><strong>Code PIN</strong><span>4 chiffres — à garder secret</span></div></div>
+          <div class="step-item"><span class="step-num">6.</span><div class="content"><strong>Ajouter un enfant</strong><span>Prénom, âge → code d'appariage</span></div></div>
+        </div>
+      </div>
+
+      <div class="step-block child">
+        <h3><i class="fas fa-child-reaching"></i> Enfant <span class="badge-step">son téléphone</span></h3>
+        <div class="step-list">
+          <div class="step-item"><span class="step-num">7.</span><div class="content"><strong>Sources inconnues</strong><span>Comme à l'étape 1</span></div></div>
+          <div class="step-item"><span class="step-num">8.</span><div class="content"><strong>Télécharger et installer</strong><span><code style="background:#e2e8f0;padding:0 0.4rem;border-radius:4px;font-size:0.75rem;">minorshield-enfant.apk</code></span></div></div>
+          <div class="step-item"><span class="step-num">9.</span><div class="content"><strong>Lier l'appareil</strong><span>Saisir le code d'appariage</span></div></div>
+          <div class="step-item"><span class="step-num">10.</span><div class="content"><strong>Autorisations</strong><span>Données d'usage, affichage par‑dessus, enregistrement d'écran</span></div></div>
+          <div class="step-item"><span class="step-num">11.</span><div class="content"><strong>Activer la protection</strong><span>Bouclier vert = actif</span></div></div>
+          <div class="step-item"><span class="step-num">12.</span><div class="content"><strong>Vérifier</strong><span>Sur Parent → l'enfant est "En ligne"</span></div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="note-box">
+      <i class="fas fa-lightbulb"></i> <strong>Bon à savoir :</strong> notification permanente imposée par Android · la protection se relance automatiquement après un redémarrage · connexion internet requise.
+    </div>
+  </section>
+
+  <!-- ===== FONCTIONNALITÉS ===== -->
+  <section id="features" class="reveal d4">
+    <h2><i class="fas fa-star"></i> Fonctionnalités</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feat-icon"><i class="fas fa-bolt"></i></span>
+        <h4>Analyse en temps réel</h4>
+        <p>Le contenu affiché est analysé en continu, quelle que soit l'application ouverte.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feat-icon"><i class="fas fa-images"></i></span>
+        <h4>Double analyse</h4>
+        <p>Images analysées par vision par ordinateur, textes extraits et inspectés.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feat-icon"><i class="fas fa-globe"></i></span>
+        <h4>Couverture universelle</h4>
+        <p>Toutes les applications sont surveillées — navigateur, jeux, réseaux sociaux.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feat-icon"><i class="fas fa-eye-slash"></i></span>
+        <h4>Blocage immédiat</h4>
+        <p>L'écran devient illisible dès qu'un contenu inapproprié est détecté.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feat-icon"><i class="fas fa-sliders"></i></span>
+        <h4>Sensibilité ajustable</h4>
+        <p>Vous définissez le seuil selon l'âge et la maturité de l'enfant.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feat-icon"><i class="fas fa-lock"></i></span>
+        <h4>Déblocage sécurisé</h4>
+        <p>Seul votre code PIN permet de débloquer l'écran — pas de contournement.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section id="faq" class="reveal d5">
+    <h2><i class="fas fa-circle-question"></i> Questions fréquentes</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">Pourquoi Android affiche‑t‑il un avertissement ? <i class="fas fa-chevron-down"></i></button>
+        <div class="faq-a"><p>MinorShield n'est pas encore sur le Play Store. Android avertit pour toute application installée hors de la boutique. Choisissez « Installer quand même ».</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Mon enfant peut‑il désinstaller l'application ? <i class="fas fa-chevron-down"></i></button>
+        <div class="faq-a"><p>Vous recevez une alerte immédiate. L'accès aux paramètres est protégé par votre code PIN.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Les captures d'écran sont‑elles conservées ? <i class="fas fa-chevron-down"></i></button>
+        <div class="faq-a"><p>Non. Chaque contenu est analysé puis supprimé. Seuls le score et l'application concernée sont enregistrés.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Que se passe‑t‑il hors connexion ? <i class="fas fa-chevron-down"></i></button>
+        <div class="faq-a"><p>L'analyse s'appuie sur nos serveurs : les deux appareils doivent avoir une connexion internet.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Combien d'enfants puis‑je protéger ? <i class="fas fa-chevron-down"></i></button>
+        <div class="faq-a"><p>Autant que nécessaire. Chaque enfant a son profil et ses réglages, accessibles depuis le même compte.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="reveal">
+    <p><i class="fas fa-copyright"></i> 2026 <strong>MinorShield</strong> · Développé par <strong>SofTarget</strong> · Tous droits réservés</p>
+    <p style="margin-top:0.3rem; font-size:0.75rem; opacity:0.6;">
+      <i class="fas fa-shield-halved" style="color:var(--primary);"></i> Protection familiale · Confiance & sécurité
+    </p>
+  </footer>
+
+</div>
+
+<!-- ===== SCRIPT ===== -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // reveal au scroll
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.10, rootMargin: '0px 0px -30px 0px' });
+
+  els.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top <= window.innerHeight - 50) {
+      el.classList.add('visible');
+    } else {
+      io.observe(el);
+    }
+  });
+
+  // FAQ accordéon
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const answer = item.querySelector('.faq-a');
+      const isOpen = item.classList.contains('open');
+
+      document.querySelectorAll('.faq-item').forEach(f => {
+        f.classList.remove('open');
+        f.querySelector('.faq-a').style.maxHeight = null;
+      });
+
+      if (!isOpen) {
+        item.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+
+});
+</script>
+
+</body>
+</html>
