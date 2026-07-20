@@ -74,40 +74,46 @@
     .d3 { transition-delay: 0.20s; }
     .d4 { transition-delay: 0.28s; }
     .d5 { transition-delay: 0.36s; }
+    .d6 { transition-delay: 0.44s; }
 
-    /* ===== HEADER (type Lucide) ===== */
+    /* ===== HEADER ===== */
     .header {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      padding: 0.5rem 0 1.5rem 0;
+      justify-content: center;
+      padding: 1rem 0 2rem 0;
       border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
+      gap: 0.8rem;
     }
 
     .header-left {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 1.2rem;
     }
 
     .logo-icon {
-      width: 38px;
-      height: 38px;
-      background: linear-gradient(145deg, #1e293b, #0f172a);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      color: #fff;
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+      width: 96px;
+      height: 96px;
+      border-radius: 24px;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 8px 32px rgba(15, 23, 42, 0.15);
+    }
+    .logo-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
     }
 
     .logo-text {
-      font-size: 1.2rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
+      font-size: 3.9rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
     }
     .logo-text span {
       background: linear-gradient(90deg, var(--primary), var(--accent));
@@ -117,23 +123,24 @@
     }
 
     .header-version {
-      font-size: 0.75rem;
+      font-size: 0.85rem;
       font-weight: 500;
       color: var(--text-muted);
       background: rgba(255, 255, 255, 0.50);
       backdrop-filter: blur(4px);
-      padding: 0.15rem 0.8rem;
+      padding: 0.2rem 1.2rem;
       border-radius: 40px;
       border: 1px solid rgba(255, 255, 255, 0.60);
+      display: inline-block;
     }
 
-    /* ===== HERO (grand titre) ===== */
+    /* ===== HERO ===== */
     .hero {
       text-align: center;
       padding: 1.5rem 0 2.5rem 0;
     }
     .hero h1 {
-      font-size: 3.6rem;
+      font-size: 3.9rem;
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1.05;
@@ -148,8 +155,13 @@
     .hero p {
       font-size: 1.1rem;
       color: var(--text-muted);
-      max-width: 560px;
+      max-width: 680px;
       margin: 0 auto 1.8rem;
+    }
+    .hero p em {
+      font-style: italic;
+      font-weight: 600;
+      color: var(--text-dark);
     }
 
     .hero .cta-group {
@@ -181,6 +193,15 @@
       box-shadow: 0 8px 28px rgba(15, 23, 42, 0.25);
     }
 
+    .btn-green {
+      background: #059669;
+      box-shadow: 0 4px 16px rgba(5, 150, 105, 0.30);
+    }
+    .btn-green:hover {
+      background: #047857;
+      box-shadow: 0 8px 28px rgba(5, 150, 105, 0.40);
+    }
+
     .btn-secondary {
       display: inline-flex;
       align-items: center;
@@ -202,7 +223,7 @@
       box-shadow: 0 8px 28px rgba(0, 0, 0, 0.04);
     }
 
-    /* ===== RESTE DU CONTENU ===== */
+    /* ===== SECTIONS GÉNÉRALES ===== */
     section { margin-bottom: 3.2rem; }
     h2 {
       font-size: 1.5rem;
@@ -381,22 +402,10 @@
     .step-item .content strong { display: block; font-size: 0.9rem; }
     .step-item .content span { font-size: 0.82rem; color: var(--text-muted); }
 
-    .note-box {
-      margin-top: 1.2rem;
-      background: rgba(255, 255, 255, 0.50);
-      backdrop-filter: blur(8px);
-      border-radius: 16px;
-      padding: 0.8rem 1.2rem;
-      border: 1px solid rgba(255, 255, 255, 0.70);
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-    .note-box i { color: var(--primary); margin-right: 0.4rem; }
-
     /* ===== FONCTIONNALITÉS ===== */
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 1.2rem;
     }
 
@@ -485,6 +494,92 @@
       color: var(--text-muted);
     }
 
+    /* ===== CONTENUS DE TEST (chemins locaux) ===== */
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .test-card {
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      text-align: center;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    .test-card:hover {
+      transform: translateY(-4px);
+      background: rgba(255, 255, 255, 0.75);
+    }
+
+    .test-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 12px;
+      background: #e2e8f0;
+    }
+
+    .test-card .test-icon {
+      font-size: 3.2rem;
+      color: var(--primary);
+      display: block;
+      margin: 0.2rem 0;
+    }
+
+    .test-card .badge {
+      font-size: 0.6rem;
+      font-weight: 700;
+      padding: 0.15rem 0.8rem;
+      border-radius: 40px;
+      display: inline-block;
+      margin: 0.3rem 0 0.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .badge-safe {
+      background: #dcfce7;
+      color: #15803d;
+      border: 1px solid #bbf7d0;
+    }
+    .badge-danger {
+      background: #fee2e2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+
+    .test-card h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin: 0.1rem 0;
+    }
+    .test-card p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .btn-test-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: var(--text-dark);
+      color: #fff;
+      padding: 0.3rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-test-link:hover {
+      background: var(--primary);
+      transform: scale(1.04);
+    }
+
     /* ===== FOOTER ===== */
     footer {
       margin-top: 2.8rem;
@@ -500,13 +595,25 @@
     @media (max-width: 640px) {
       .container { padding: 1.5rem 1rem; border-radius: 1.6rem; }
       .hero h1 { font-size: 2.4rem; }
-      .header { flex-wrap: wrap; gap: 0.6rem; }
+
+      .header { gap: 0.6rem; padding: 0.8rem 0 1.5rem 0; }
+      .logo-text { font-size: 2.2rem; }
+      .logo-icon { width: 64px; height: 64px; }
+      .header-left { gap: 1rem; }
+
       .download-grid { flex-direction: column; align-items: center; }
       .download-card { max-width: 100%; width: 100%; }
       .features-grid { grid-template-columns: 1fr; }
       .steps-grid { grid-template-columns: 1fr; }
       .step-block { padding: 1rem; }
       .hero .cta-group { flex-direction: column; align-items: center; }
+      .test-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 450px) {
+      .test-grid { grid-template-columns: 1fr; }
+      .logo-text { font-size: 1.8rem; }
+      .logo-icon { width: 48px; height: 48px; }
+      .header-left { gap: 0.8rem; }
     }
   </style>
 </head>
@@ -514,28 +621,31 @@
 
 <div class="container">
 
-  <!-- ===== HEADER (comme Lucide) ===== -->
+  <!-- ===== HEADER ===== -->
   <header class="header reveal visible">
     <div class="header-left">
-      <div class="logo-icon"><i class="fas fa-shield-halved"></i></div>
+      <div class="logo-icon">
+        <img src="icone.png" alt="MinorShield" />
+      </div>
       <div class="logo-text">Minor<span>Shield</span></div>
     </div>
-    <div class="header-version">v1.0.0</div>
+    <div class="header-version">v2.1.0</div>
   </header>
 
-  <!-- ===== HERO (grand titre + sous-titre + CTA) ===== -->
+  <!-- ===== HERO ===== -->
   <section class="hero reveal d1">
-    <h1>Protection numérique pour <br /><span>toute la famille</span></h1>
-    <p>Analyse en temps réel et blocage des contenus inappropriés — en toute discrétion.</p>
+    <h1>Protégez vos enfants des <br /><span>contenus inappropriés en ligne.</span></h1>
+    <p><em>MinorShield</em> analyse en temps réel, bloque automatiquement et vous alerte sur les contenus inappropriés (cyberharcèlement, violence, nudité, discours de haine, etc.) selon vos préférences.</p>
     <div class="cta-group">
-      <a href="#download" class="btn-primary"><i class="fas fa-arrow-down"></i> Télécharger</a>
+      <a href="#download" class="btn-primary btn-green"><i class="fas fa-arrow-down"></i> Télécharger</a>
       <a href="#features" class="btn-secondary"><i class="fas fa-star"></i> Voir les fonctionnalités</a>
+      <a href="#faq" class="btn-secondary"><i class="fas fa-circle-question"></i> FAQ</a>
     </div>
   </section>
 
   <!-- ===== TÉLÉCHARGEMENT ===== -->
   <section id="download" class="reveal d2">
-    <h2><i class="fas fa-download"></i> Télécharger les applications</h2>
+    <h2><i class="fas fa-download"></i> Télécharger l'app</h2>
     <p class="section-desc">Installez l'application Parent sur votre téléphone, et l'application Enfant sur celui de votre enfant.</p>
 
     <div class="download-grid">
@@ -543,21 +653,16 @@
         <span class="icon"><i class="fas fa-user-shield"></i></span>
         <span class="tag">Parent</span>
         <h3>MinorShield Parent</h3>
-        <div class="version">v1.0.0 · 12 Mo</div>
+        <div class="version">v2.1.0 · 12 Mo</div>
         <a href="minorshield-parent.apk" class="btn-download"><i class="fas fa-arrow-down"></i> Télécharger</a>
       </div>
       <div class="download-card child">
         <span class="icon"><i class="fas fa-child-reaching"></i></span>
         <span class="tag">Enfant</span>
         <h3>MinorShield Enfant</h3>
-        <div class="version">v1.0.0 · 8 Mo</div>
+        <div class="version">v2.1.0 · 8 Mo</div>
         <a href="minorshield-enfant.apk" class="btn-download"><i class="fas fa-arrow-down"></i> Télécharger</a>
       </div>
-    </div>
-    <div style="text-align:center; margin-top:1.2rem;">
-      <span style="background:rgba(255,255,255,0.40); backdrop-filter:blur(4px); padding:0.3rem 1.2rem; border-radius:60px; font-size:0.8rem; color:var(--text-muted);">
-        <i class="fas fa-shield-halved" style="color:var(--primary);"></i> Fichiers signés · Sécurisés
-      </span>
     </div>
   </section>
 
@@ -593,46 +698,69 @@
       </div>
 
     </div>
-
-    <div class="note-box">
-      <i class="fas fa-lightbulb"></i> <strong>Bon à savoir :</strong> notification permanente imposée par Android · la protection se relance automatiquement après un redémarrage · connexion internet requise.
-    </div>
   </section>
 
   <!-- ===== FONCTIONNALITÉS ===== -->
   <section id="features" class="reveal d4">
     <h2><i class="fas fa-star"></i> Fonctionnalités</h2>
     <div class="features-grid">
+
+      <!-- 1. Analyse en Temps Réel -->
       <div class="feature-card">
         <span class="feat-icon"><i class="fas fa-bolt"></i></span>
-        <h4>Analyse en temps réel</h4>
-        <p>Le contenu affiché est analysé en continu, quelle que soit l'application ouverte.</p>
+        <h4>Analyse en Temps Réel</h4>
+        <p>Scan instantané des images, textes et vidéos affichés à l'écran avec une latence &lt; 6 secondes.</p>
       </div>
-      <div class="feature-card">
-        <span class="feat-icon"><i class="fas fa-images"></i></span>
-        <h4>Double analyse</h4>
-        <p>Images analysées par vision par ordinateur, textes extraits et inspectés.</p>
-      </div>
-      <div class="feature-card">
-        <span class="feat-icon"><i class="fas fa-globe"></i></span>
-        <h4>Couverture universelle</h4>
-        <p>Toutes les applications sont surveillées — navigateur, jeux, réseaux sociaux.</p>
-      </div>
-      <div class="feature-card">
-        <span class="feat-icon"><i class="fas fa-eye-slash"></i></span>
-        <h4>Blocage immédiat</h4>
-        <p>L'écran devient illisible dès qu'un contenu inapproprié est détecté.</p>
-      </div>
-      <div class="feature-card">
-        <span class="feat-icon"><i class="fas fa-sliders"></i></span>
-        <h4>Sensibilité ajustable</h4>
-        <p>Vous définissez le seuil selon l'âge et la maturité de l'enfant.</p>
-      </div>
+
+      <!-- 2. Confidentialité Garantie -->
       <div class="feature-card">
         <span class="feat-icon"><i class="fas fa-lock"></i></span>
-        <h4>Déblocage sécurisé</h4>
-        <p>Seul votre code PIN permet de débloquer l'écran — pas de contournement.</p>
+        <h4>Confidentialité Garantie</h4>
+        <p>Aucun enregistrement ni stockage des flux analysés</p>
       </div>
+
+      <!-- 3. Couverture Universelle -->
+      <div class="feature-card">
+        <span class="feat-icon"><i class="fas fa-globe"></i></span>
+        <h4>Couverture Universelle</h4>
+        <p>Compatible avec toutes les applications (réseaux sociaux, navigateurs, …) et tous les supports (Smartphone, Smart TV, PC, etc.).</p>
+      </div>
+
+      <!-- 4. Blocage Immédiat -->
+      <div class="feature-card">
+        <span class="feat-icon"><i class="fas fa-shield-halved"></i></span>
+        <h4>Blocage Immédiat</h4>
+        <p>Masquage automatique des contenus jugés inappropriés</p>
+      </div>
+
+      <!-- 5. IA Contextualisée -->
+      <div class="feature-card">
+        <span class="feat-icon"><i class="fas fa-brain"></i></span>
+        <h4>IA Contextualisée</h4>
+        <p>Notre IA est spécifiquement entraînée sur des données camerounaises et africaines pour une détection culturellement adaptée.</p>
+      </div>
+
+      <!-- 6. Contrôle Parental Exclusif -->
+      <div class="feature-card">
+        <span class="feat-icon"><i class="fas fa-key"></i></span>
+        <h4>Contrôle Parental Exclusif</h4>
+        <p>Seul le parent administrateur peut désactiver le bouclier via un code PIN sécurisé.</p>
+      </div>
+
+      <!-- 7. Supervision Multi-Enfants -->
+      <div class="feature-card">
+        <span class="feat-icon"><i class="fas fa-users"></i></span>
+        <h4>Supervision Multi-Enfants</h4>
+        <p>Gérez tous vos enfants depuis un tableau de bord unique avec des profils personnalisés.</p>
+      </div>
+
+      <!-- 8. Flexibilité Totale -->
+      <div class="feature-card">
+        <span class="feat-icon"><i class="fas fa-sliders-h"></i></span>
+        <h4>Flexibilité Totale</h4>
+        <p>Personnalisez les filtres, le niveau de sensibilité, les restrictions par catégorie et les plages horaires.</p>
+      </div>
+
     </div>
   </section>
 
@@ -651,16 +779,103 @@
       </div>
       <div class="faq-item">
         <button class="faq-q">Les captures d'écran sont‑elles conservées ? <i class="fas fa-chevron-down"></i></button>
-        <div class="faq-a"><p>Non. Chaque contenu est analysé puis supprimé. Seuls le score et l'application concernée sont enregistrés.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Que se passe‑t‑il hors connexion ? <i class="fas fa-chevron-down"></i></button>
-        <div class="faq-a"><p>L'analyse s'appuie sur nos serveurs : les deux appareils doivent avoir une connexion internet.</p></div>
+        <div class="faq-a"><p>Aucun enregistrement ni stockage des flux analysés.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">Combien d'enfants puis‑je protéger ? <i class="fas fa-chevron-down"></i></button>
         <div class="faq-a"><p>Autant que nécessaire. Chaque enfant a son profil et ses réglages, accessibles depuis le même compte.</p></div>
       </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTENUS DE TEST (chemins locaux vers images/ et videos/) ===== -->
+  <section id="test" class="reveal d6">
+    <h2><i class="fas fa-vial"></i> Contenus de test</h2>
+    <p class="section-desc">
+      Ouvrez ces liens sur le <strong>téléphone de l’enfant</strong> pour vérifier que MinorShield bloque bien les contenus inappropriés.<br>
+      <span class="badge badge-danger" style="font-size:0.75rem; display:inline-block; margin-top:0.3rem;">⚠️ Tous les contenus ci‑dessous doivent déclencher le blocage immédiat.</span>
+    </p>
+
+    <!-- 3 cartes visibles (images) -->
+    <div class="test-grid" id="testGrid">
+
+      <!-- Image 1 -->
+      <div class="test-card">
+        <img src="images/test1.jpg" alt="Contenu sensible 1" />
+        <span class="badge badge-danger">⚠️ Danger</span>
+        <h4>Image test 1</h4>
+        <p>Doit être bloquée.</p>
+        <a href="images/test1.jpg" target="_blank" class="btn-test-link"><i class="fas fa-external-link-alt"></i> Tester</a>
+      </div>
+
+      <!-- Image 2 -->
+      <div class="test-card">
+        <img src="images/test2.jpg" alt="Contenu sensible 2" />
+        <span class="badge badge-danger">⚠️ Danger</span>
+        <h4>Image test 2</h4>
+        <p>Doit être bloquée.</p>
+        <a href="images/test2.jpg" target="_blank" class="btn-test-link"><i class="fas fa-external-link-alt"></i> Tester</a>
+      </div>
+
+      <!-- Image 3 -->
+      <div class="test-card">
+        <img src="images/test3.jpg" alt="Contenu sensible 3" />
+        <span class="badge badge-danger">⚠️ Danger</span>
+        <h4>Image test 3</h4>
+        <p>Doit être bloquée.</p>
+        <a href="images/test3.jpg" target="_blank" class="btn-test-link"><i class="fas fa-external-link-alt"></i> Tester</a>
+      </div>
+
+    </div>
+
+    <!-- 4 cartes masquées (2 vidéos + 1 image + 1 vidéo) -->
+    <div id="hiddenTests" style="display: none; margin-top: 1.5rem;">
+      <div class="test-grid">
+
+        <!-- Vidéo 1 -->
+        <div class="test-card">
+          <span class="test-icon"><i class="fas fa-video"></i></span>
+          <span class="badge badge-danger">⚠️ Danger</span>
+          <h4>Vidéo test 1</h4>
+          <p>Doit être bloquée.</p>
+          <a href="videos/test1.mp4" target="_blank" class="btn-test-link"><i class="fas fa-play"></i> Tester</a>
+        </div>
+
+        <!-- Vidéo 2 -->
+        <div class="test-card">
+          <span class="test-icon"><i class="fas fa-film"></i></span>
+          <span class="badge badge-danger">⚠️ Danger</span>
+          <h4>Vidéo test 2</h4>
+          <p>Doit être bloquée.</p>
+          <a href="videos/test2.mp4" target="_blank" class="btn-test-link"><i class="fas fa-play"></i> Tester</a>
+        </div>
+
+        <!-- Image 4 -->
+        <div class="test-card">
+          <img src="images/test4.jpg" alt="Contenu sensible 4" />
+          <span class="badge badge-danger">⚠️ Danger</span>
+          <h4>Image test 4</h4>
+          <p>Doit être bloquée.</p>
+          <a href="images/test4.jpg" target="_blank" class="btn-test-link"><i class="fas fa-external-link-alt"></i> Tester</a>
+        </div>
+
+        <!-- Vidéo 3 -->
+        <div class="test-card">
+          <span class="test-icon"><i class="fas fa-video"></i></span>
+          <span class="badge badge-danger">⚠️ Danger</span>
+          <h4>Vidéo test 3</h4>
+          <p>Doit être bloquée.</p>
+          <a href="videos/test3.mp4" target="_blank" class="btn-test-link"><i class="fas fa-play"></i> Tester</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bouton "Voir plus" -->
+    <div style="text-align: center; margin-top: 1.2rem;">
+      <button id="toggleTestBtn" class="btn-secondary" style="cursor: pointer;">
+        <i class="fas fa-chevron-down"></i> Voir plus de contenus
+      </button>
     </div>
   </section>
 
@@ -716,6 +931,26 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // Bouton dérouler / replier (contenus de test)
+  const toggleBtn = document.getElementById('toggleTestBtn');
+  const hiddenTests = document.getElementById('hiddenTests');
+
+  if (toggleBtn && hiddenTests) {
+    toggleBtn.addEventListener('click', () => {
+      const isHidden = hiddenTests.style.display === 'none' || hiddenTests.style.display === '';
+      if (isHidden) {
+        hiddenTests.style.display = 'block';
+        toggleBtn.innerHTML = '<i class="fas fa-chevron-up"></i> Voir moins de contenus';
+        setTimeout(() => {
+          toggleBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+      } else {
+        hiddenTests.style.display = 'none';
+        toggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Voir plus de contenus';
+      }
+    });
+  }
 
 });
 </script>
