@@ -494,7 +494,7 @@
       color: var(--text-muted);
     }
 
-    /* ===== CONTENUS DE TEST (chemins locaux) ===== */
+    /* ===== CONTENUS DE TEST (modifié) ===== */
     .test-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -528,27 +528,6 @@
       color: var(--primary);
       display: block;
       margin: 0.2rem 0;
-    }
-
-    .test-card .badge {
-      font-size: 0.6rem;
-      font-weight: 700;
-      padding: 0.15rem 0.8rem;
-      border-radius: 40px;
-      display: inline-block;
-      margin: 0.3rem 0 0.2rem;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-    }
-    .badge-safe {
-      background: #dcfce7;
-      color: #15803d;
-      border: 1px solid #bbf7d0;
-    }
-    .badge-danger {
-      background: #fee2e2;
-      color: #b91c1c;
-      border: 1px solid #fecaca;
     }
 
     .test-card h4 {
@@ -677,7 +656,7 @@
         <h3><i class="fas fa-user-shield"></i> Parent <span class="badge-step">votre téléphone</span></h3>
         <div class="step-list">
           <div class="step-item"><span class="step-num">1.</span><div class="content"><strong>Sources inconnues</strong><span>Paramètres → Sécurité → Sources inconnues</span></div></div>
-          <div class="step-item"><span class="step-num">2.</span><div class="content"><strong>Télécharger</strong><span>Fichier <code style="background:#e2e8f0;padding:0 0.4rem;border-radius:4px;font-size:0.75rem;">minorshield-parent.apk</code></span></div></div>
+          <div class="step-item"><span class="step-num">2.</span><div class="content"><strong>Télécharger</strong><span>Fichier <code style="background:#e2e8f0;padding:0 0.4rem;border-radius:4px;font-size:0.75rem;">app-parent-release.apk</code></span></div></div>
           <div class="step-item"><span class="step-num">3.</span><div class="content"><strong>Installer</strong><span>Ouvrir le fichier → Installer</span></div></div>
           <div class="step-item"><span class="step-num">4.</span><div class="content"><strong>Créer un compte</strong><span>Nom, email, mot de passe</span></div></div>
           <div class="step-item"><span class="step-num">5.</span><div class="content"><strong>Code PIN</strong><span>4 chiffres — à garder secret</span></div></div>
@@ -689,7 +668,7 @@
         <h3><i class="fas fa-child-reaching"></i> Enfant <span class="badge-step">son téléphone</span></h3>
         <div class="step-list">
           <div class="step-item"><span class="step-num">7.</span><div class="content"><strong>Sources inconnues</strong><span>Comme à l'étape 1</span></div></div>
-          <div class="step-item"><span class="step-num">8.</span><div class="content"><strong>Télécharger et installer</strong><span><code style="background:#e2e8f0;padding:0 0.4rem;border-radius:4px;font-size:0.75rem;">minorshield-enfant.apk</code></span></div></div>
+          <div class="step-item"><span class="step-num">8.</span><div class="content"><strong>Télécharger et installer</strong><span><code style="background:#e2e8f0;padding:0 0.4rem;border-radius:4px;font-size:0.75rem;">app-enfant-release.apk</code></span></div></div>
           <div class="step-item"><span class="step-num">9.</span><div class="content"><strong>Lier l'appareil</strong><span>Saisir le code d'appariage</span></div></div>
           <div class="step-item"><span class="step-num">10.</span><div class="content"><strong>Autorisations</strong><span>Données d'usage, affichage par‑dessus, enregistrement d'écran</span></div></div>
           <div class="step-item"><span class="step-num">11.</span><div class="content"><strong>Activer la protection</strong><span>Bouclier vert = actif</span></div></div>
@@ -705,56 +684,48 @@
     <h2><i class="fas fa-star"></i> Fonctionnalités</h2>
     <div class="features-grid">
 
-      <!-- 1. Analyse en Temps Réel -->
       <div class="feature-card">
         <span class="feat-icon"><i class="fas fa-bolt"></i></span>
         <h4>Analyse en Temps Réel</h4>
         <p>Scan instantané des images, textes et vidéos affichés à l'écran avec une latence &lt; 6 secondes.</p>
       </div>
 
-      <!-- 2. Confidentialité Garantie -->
       <div class="feature-card">
         <span class="feat-icon"><i class="fas fa-lock"></i></span>
         <h4>Confidentialité Garantie</h4>
         <p>Aucun enregistrement ni stockage des flux analysés</p>
       </div>
 
-      <!-- 3. Couverture Universelle -->
       <div class="feature-card">
         <span class="feat-icon"><i class="fas fa-globe"></i></span>
         <h4>Couverture Universelle</h4>
         <p>Compatible avec toutes les applications (réseaux sociaux, navigateurs, …) et tous les supports (Smartphone, Smart TV, PC, etc.).</p>
       </div>
 
-      <!-- 4. Blocage Immédiat -->
       <div class="feature-card">
         <span class="feat-icon"><i class="fas fa-shield-halved"></i></span>
         <h4>Blocage Immédiat</h4>
         <p>Masquage automatique des contenus jugés inappropriés</p>
       </div>
 
-      <!-- 5. IA Contextualisée -->
       <div class="feature-card">
         <span class="feat-icon"><i class="fas fa-brain"></i></span>
         <h4>IA Contextualisée</h4>
         <p>Notre IA est spécifiquement entraînée sur des données camerounaises et africaines pour une détection culturellement adaptée.</p>
       </div>
 
-      <!-- 6. Contrôle Parental Exclusif -->
       <div class="feature-card">
         <span class="feat-icon"><i class="fas fa-key"></i></span>
         <h4>Contrôle Parental Exclusif</h4>
         <p>Seul le parent administrateur peut désactiver le bouclier via un code PIN sécurisé.</p>
       </div>
 
-      <!-- 7. Supervision Multi-Enfants -->
       <div class="feature-card">
         <span class="feat-icon"><i class="fas fa-users"></i></span>
         <h4>Supervision Multi-Enfants</h4>
         <p>Gérez tous vos enfants depuis un tableau de bord unique avec des profils personnalisés.</p>
       </div>
 
-      <!-- 8. Flexibilité Totale -->
       <div class="feature-card">
         <span class="feat-icon"><i class="fas fa-sliders-h"></i></span>
         <h4>Flexibilité Totale</h4>
@@ -788,12 +759,11 @@
     </div>
   </section>
 
-  <!-- ===== CONTENUS DE TEST (chemins locaux vers images/ et videos/) ===== -->
+  <!-- ===== CONTENUS DE TEST (MODIFIÉ) ===== -->
   <section id="test" class="reveal d6">
     <h2><i class="fas fa-vial"></i> Contenus de test</h2>
     <p class="section-desc">
-      Ouvrez ces liens sur le <strong>téléphone de l’enfant</strong> pour vérifier que MinorShield bloque bien les contenus inappropriés.<br>
-      <span class="badge badge-danger" style="font-size:0.75rem; display:inline-block; margin-top:0.3rem;">⚠️ Tous les contenus ci‑dessous doivent déclencher le blocage immédiat.</span>
+      Ouvrez ces liens sur le <strong>téléphone de l’enfant</strong> pour vérifier que MinorShield bloque bel et bien les contenus inappropriés ci-dessous.
     </p>
 
     <!-- 3 cartes visibles (images) -->
@@ -802,27 +772,24 @@
       <!-- Image 1 -->
       <div class="test-card">
         <img src="images/test1.jpg" alt="Contenu sensible 1" />
-        <span class="badge badge-danger">⚠️ Danger</span>
         <h4>Image test 1</h4>
-        <p>Doit être bloquée.</p>
+        <p>&nbsp;</p>
         <a href="images/test1.jpg" target="_blank" class="btn-test-link"><i class="fas fa-external-link-alt"></i> Tester</a>
       </div>
 
       <!-- Image 2 -->
       <div class="test-card">
         <img src="images/test2.jpg" alt="Contenu sensible 2" />
-        <span class="badge badge-danger">⚠️ Danger</span>
         <h4>Image test 2</h4>
-        <p>Doit être bloquée.</p>
+        <p>&nbsp;</p>
         <a href="images/test2.jpg" target="_blank" class="btn-test-link"><i class="fas fa-external-link-alt"></i> Tester</a>
       </div>
 
       <!-- Image 3 -->
       <div class="test-card">
         <img src="images/test3.jpg" alt="Contenu sensible 3" />
-        <span class="badge badge-danger">⚠️ Danger</span>
         <h4>Image test 3</h4>
-        <p>Doit être bloquée.</p>
+        <p>&nbsp;</p>
         <a href="images/test3.jpg" target="_blank" class="btn-test-link"><i class="fas fa-external-link-alt"></i> Tester</a>
       </div>
 
@@ -835,36 +802,32 @@
         <!-- Vidéo 1 -->
         <div class="test-card">
           <span class="test-icon"><i class="fas fa-video"></i></span>
-          <span class="badge badge-danger">⚠️ Danger</span>
           <h4>Vidéo test 1</h4>
-          <p>Doit être bloquée.</p>
+          <p>&nbsp;</p>
           <a href="videos/test1.mp4" target="_blank" class="btn-test-link"><i class="fas fa-play"></i> Tester</a>
         </div>
 
         <!-- Vidéo 2 -->
         <div class="test-card">
           <span class="test-icon"><i class="fas fa-film"></i></span>
-          <span class="badge badge-danger">⚠️ Danger</span>
           <h4>Vidéo test 2</h4>
-          <p>Doit être bloquée.</p>
+          <p>&nbsp;</p>
           <a href="videos/test2.mp4" target="_blank" class="btn-test-link"><i class="fas fa-play"></i> Tester</a>
         </div>
 
         <!-- Image 4 -->
         <div class="test-card">
           <img src="images/test4.jpg" alt="Contenu sensible 4" />
-          <span class="badge badge-danger">⚠️ Danger</span>
           <h4>Image test 4</h4>
-          <p>Doit être bloquée.</p>
+          <p>&nbsp;</p>
           <a href="images/test4.jpg" target="_blank" class="btn-test-link"><i class="fas fa-external-link-alt"></i> Tester</a>
         </div>
 
         <!-- Vidéo 3 -->
         <div class="test-card">
           <span class="test-icon"><i class="fas fa-video"></i></span>
-          <span class="badge badge-danger">⚠️ Danger</span>
           <h4>Vidéo test 3</h4>
-          <p>Doit être bloquée.</p>
+          <p>&nbsp;</p>
           <a href="videos/test3.mp4" target="_blank" class="btn-test-link"><i class="fas fa-play"></i> Tester</a>
         </div>
 
